@@ -22,26 +22,25 @@ def differential_equation(y, time, beta, gamma):
     return ([ds_dt, di_dt, dr_dt])
 
 #initial condition
-initialS = 200
-initialI = 29
-initialR = 10
+initialS = 0.8
+initialI = 0.1
+initialR = 0.1
 
 So = initialS
 Io = initialI
 Ro = initialR
 
-beta = 0.35
-gamma = 0.15
+beta = 0.70
+gamma =0.30
 
 #time vector
-time = numpy.linspace(0, 100, 100000)
+time = numpy.linspace(0, 100, 1000)
 
 #sir_model
 sir_model = scipy.integrate.odeint(differential_equation, [So, Io, Ro], time, args = (beta, gamma))
 sir_model = numpy.array(sir_model)
 
 #plot result
-#plt.figure(figsize[6, 4])
 plt.plot(time, sir_model[:, 0], label = "S(t)")
 plt.plot(time, sir_model[:, 1], label = "I(t)")
 plt.plot(time, sir_model[:, 2], label = "R(t)")
