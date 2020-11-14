@@ -22,23 +22,25 @@ def differential_equation(y, time, beta, gamma):
     return ([ds_dt, di_dt, dr_dt])
 
 #initial condition
-initialS = 0.8
-initialI = 0.1
-initialR = 0.1
+initialS = 0.905
+initialI = 0.004
+initialR = 0.001
 
 So = initialS
 Io = initialI
 Ro = initialR
 
-beta = 0.70
-gamma =0.30
+beta = 0.77
+gamma =0.1
 
 #time vector
-time = numpy.linspace(0, 100, 1000)
+time = numpy.linspace(0, 120, 10000)
+print(time)
 
 #sir_model
 sir_model = scipy.integrate.odeint(differential_equation, [So, Io, Ro], time, args = (beta, gamma))
 sir_model = numpy.array(sir_model)
+print(sir_model)
 
 #plot result
 plt.plot(time, sir_model[:, 0], label = "S(t)")
@@ -47,5 +49,5 @@ plt.plot(time, sir_model[:, 2], label = "R(t)")
 plt.grid()
 plt.legend()
 plt.xlabel("Time")
-plt.ylabel("proportion")
+plt.ylabel("percentage of people")
 plt.show()
